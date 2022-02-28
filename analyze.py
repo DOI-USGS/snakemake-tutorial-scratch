@@ -81,6 +81,8 @@ if __name__ == "__main__":
     sb_item = "5e5d0bb9e4b01d50924f2b36"
     sb_file = "pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
     out_dir = "out_data/"
+    if not os.path.exists(out_dir):
+        os.makedirs(out_dir)
     sb_get(sb_item, sb_file, out_dir)
     file_path = os.path.join(out_dir, sb_file)
 
