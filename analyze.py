@@ -90,13 +90,13 @@ if __name__ == "__main__":
         zip_ref.extractall(out_dir)
 
     lake_ids = ["120020150", "107072210"]
-    for i in lake_ids:
+    for lake_id in lake_ids:
         pred_csv_file = os.path.join("out_data/tmp",
-                                     f"pgdl_nhdhr_{i}_temperatures.csv")
+                                     f"pgdl_nhdhr_{lake_id}_temperatures.csv")
         df = read_pred_csv(pred_csv_file)
-        calc_doy_means(df, i, f"doy_{i}.csv")
-    doy_files = [f"doy_{i}.csv" for i in lake_ids]
-    combine_site_files(doy_files, "combined_doy.csv")
+        calc_doy_means(df, lake_id, out_file=f"doy_{lake_id}.csv")
+    doy_files = [f"doy_{lake_id}.csv" for lake_id in lake_ids]
+    combine_site_files(doy_files, out_file="combined_doy.csv")
     plot_doy_means("combined_doy.csv", "doy_plot.png")
 
 
