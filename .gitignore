@@ -1,5 +1,4 @@
 #ipynb_checkpoints
-<<<<<<< HEAD
 **.ipynb_checkpoints/*
 **.ipynb_checkpoints/*
 
@@ -8,13 +7,4 @@
 1_fetch/out/*
 2_process/out/*
 3_plot/out/*
-=======
-.ipynb_checkpoints/*
-**/.ipynb_checkpoints/*
 
-
-#outputs
-/1_fetch/out/*
-/2_process/out/*
-/3_plot/out/*
->>>>>>> 24a6895adfbed3a79ca1ab03aca9a19bc034a4c5
