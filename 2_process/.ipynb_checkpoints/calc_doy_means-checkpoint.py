@@ -16,16 +16,13 @@ def calc_doy_means(df, site_id, out_file=None):
         doy_means.to_csv(out_file)
     return doy_means
 
-def main(out_dir, lake_ids):
-    if not os.path.exists(out_dir):
-	       os.makedirs(out_dir)
+def main():
+    lake_ids = ["120020150", "107072210"]
     for i in lake_ids:
         pred_csv_file = os.path.join("out_data/tmp",
                                  f"pgdl_nhdhr_{i}_temperatures.csv")
         df = read_pred_csv(pred_csv_file)
         calc_doy_means(df, i, f"2_process/out/doy_{i}.csv")
-
+    
 if __name__ == '__main__':
-    out_dir = "2_process/out"
-    lake_ids = ["120020150", "107072210"]
     main()
