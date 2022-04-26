@@ -20,7 +20,7 @@ def main(out_dir, lake_ids):
     if not os.path.exists(out_dir):
 	       os.makedirs(out_dir)
     for i in lake_ids:
-        pred_csv_file = os.path.join("out_data/tmp",
+        pred_csv_file = os.path.join("1_fetch/out/tmp",
                                  f"pgdl_nhdhr_{i}_temperatures.csv")
         df = read_pred_csv(pred_csv_file)
         calc_doy_means(df, i, f"2_process/out/doy_{i}.csv")
