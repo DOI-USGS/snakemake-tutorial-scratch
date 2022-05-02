@@ -35,6 +35,8 @@ def sb_get(item_id, sb_data_file=None, destination_dir='.'):
     return response
 
 def main(sb_item, sb_file, out_dir):
+    if not os.path.exists(out_dir):
+        os.makedirs(out_dir)
     sb_get(sb_item, sb_file, out_dir)
 
 if __name__ == "__main__":
