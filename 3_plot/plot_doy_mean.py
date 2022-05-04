@@ -26,4 +26,4 @@ if __name__ == '__main__':
     combined_doy_means = "2_process/out/combined_doy.csv"
     out_file = "3_plot/out/doy_plot.png"
     depths = (0, 1, 2, 5)
-    main(out_dir, combined_doy_means, out_file, depths)
+    main(combined_doy_means, out_file, depths)
