@@ -11,8 +11,8 @@ def combine_site_files(site_files, out_file=None):
 def main(out_dir, lake_ids):
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
-    site_files = [f"2_process/out/doy_{i}.csv" for i in lake_ids]
-    out_file = "2_process/out/combined_doy.csv"
+    site_files = [os.path.join(out_dir, f"doy_{i}.csv") for i in lake_ids]
+    out_file = os.path.join(out_dir, "combined_doy.csv")
     combine_site_files(site_files, out_file)
 
 if __name__ == '__main__':
