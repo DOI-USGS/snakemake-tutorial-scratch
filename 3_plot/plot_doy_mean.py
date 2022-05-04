@@ -13,7 +13,8 @@ def plot_doy_means(out_file, df_sel_depths):
     plt.savefig(out_file)
     return out_file
 
-def main(out_dir, combined_doy_means, out_file, depths):
+def main(combined_doy_means, out_file, depths):
+    out_dir = os.path.dirname(out_file)
     if not os.path.exists(out_dir):
 	    os.makedirs(out_dir)
     df_combined = pd.read_csv(combined_doy_means).set_index(["doy", "site_id"])
