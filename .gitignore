@@ -2,6 +2,9 @@
 **.ipynb_checkpoints/*
 **/.ipynb_checkpoints*
 
+#snakemake logs
+.snakemake/
+
 
 #outputs
 1_fetch/out/tmp/*
