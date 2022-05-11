@@ -59,3 +59,12 @@ rule combine_site_files:
     script:
         "2_process/combine_site_files.py"
 
+rule plot_doy_mean:
+    input:
+        in_file = "2_process/out/combined_doy.csv"
+    output:
+        out_file = "3_plot/out/doy_plot.png"
+    params:
+        depths = [0, 1, 2, 5]
+    script:
+        "3_plot/plot_doy_mean.py"
