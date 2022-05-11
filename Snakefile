@@ -50,3 +50,12 @@ rule calc_doy_means:
     script:
         "2_process/calc_doy_means.py"
 
+rule combine_site_files:
+    input:
+        "2_process/out/doy_120020150.csv",
+        "2_process/out/doy_107072210.csv"
+    output:
+        out_file = "2_process/out/combined_doy.csv"
+    script:
+        "2_process/combine_site_files.py"
+
