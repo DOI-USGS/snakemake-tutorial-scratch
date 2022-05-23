@@ -1,3 +1,7 @@
+rule all:
+  input:
+    "3_plot/out/doy_plot.png"
+
 """
 Download data from ScienceBase
 """
