@@ -13,16 +13,17 @@ At the same time, each issue will introduce you to new Snakemake concepts.
 
 Most of the Python code for the pipeline is already written.
 It's organized into three phases.
-- `1_fetch` downloads the predictions from this data release on ScienceBase: https://www.sciencebase.gov/catalog/item/5e5d0bb9e4b01d50924f2b36 and unzips the files.
-- `2_process` computes the mean prediction on each day of the year for a selection of lakes and aggregates those means into a single .csv file.
+- `1_fetch` downloads the lake temperature predictions from this data release on ScienceBase: https://www.sciencebase.gov/catalog/item/5e5d0bb9e4b01d50924f2b36 and unzips the files. This download includes daily temperature predictions at 0.5m depth intervals for 24 lakes. The daily predictions span multiple years.
+- `2_process` computes the mean predicted temperature on each day of the year (at all depths) for each lake we select and then concatenates the data for each lake into a single .csv file.
 - `3_plot` plots the mean temperatures on each day of the year for each lake at a selection of depths.
 
-You can find the code organized by phase in three folders.
+The code for each of the phases is located in the correspondingly named folder of this repository.
 Within each folder are all the Python scripts needed to execute the tasks of that phase. 
 If we wanted to carry out these tasks using the scripts as they are, we could execute each script in order.
 Alternatively, we can use a Snakemake pipeline.
 Snakemake allows us to:
 
+- Describe the order in which scripts should run, and what the expected inputs/outputs of each step are
 - Automate the execution of the scripts
 - Track which outputs have already been made
 - Only run the parts of the pipeline that need to be run
@@ -36,7 +37,7 @@ In this issue we'll create a Snakefile and write our first rule.
 A Snakefile is a file that describes every step a pipeline will take, which files that step depends upon, and which files that step produces.
 The Snakefile can also hold or point to configuration settings.
 It's like a recipe for how to create outputs, or a blueprint of the pipeline.
-The main pieces of a Snakefile are called rules.
+A Snakefile is broken down into a sequential set of steps, each of which is called a rule.
 
 ## What's a rule?
 
@@ -49,7 +50,7 @@ A rule specifies:
 
 ## Running the script without the pipeline
 
-This issue's rule will download the temperature predictions from ScienceBase that the pipeline will process and visualize.
+The rule that we will create in this issue will download the temperature predictions from ScienceBase that we will process and visualize in later steps.
 As mentioned earlier, the Python code for this step is already written.
 You can find it in the script `sb_get.py`.
 Try running that script now. I'll wait!
@@ -65,7 +66,7 @@ The script should download a single zip file to `1_fetch/out/pgdl_predictions_04
 If the file wasn't downloaded, let your instructor know and we'll get it sorted out!
 
 If the file is there, great!
-Now, let's write a Snakemake rule so that we build in the step of downloading that file to the pipeline.
+Now, let's write a Snakemake rule to download that file and build the first step of our pipeline!
 
 ## Writing a rule
 
@@ -122,7 +123,7 @@ snakemake --cores 1 1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zi
 This is the main way to run the pipeline.
 We call the `snakemake` executable, passing in the file or files we want it to create as arguments.
 Notice the `--cores 1` argument.
-That specifies how many cores we want to use.
+That specifies how many cores we want to use, and it is a required argument that you must pass each time you run snakemake.
 Snakemake is great for running many tasks in parallel.
 In this case, though, there's only one task, so parallelization won't help.
 So, we're only using one core.
