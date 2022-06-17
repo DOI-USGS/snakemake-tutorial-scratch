@@ -21,7 +21,7 @@ You can manually create your anaconda environment and install the required packa
 2. Activate the environment: `conda activate snakemake-tutorial`
 
 
-3. Install mamba, a fast and robust replacement for the conda package manager that is better able to handle the installation of snakemake: `conda install -c conda-forge mamba`
+3. Install Mamba, a fast and robust replacement for the Conda package manager that is better able to handle the installation of Snakemake: `conda install -c conda-forge mamba`
 
 4. Install snakemake (please [read the docs](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) for more details on installation). If you are working in a Mac or Linux OS, you can install the full version of snakemake: `mamba install -c conda-forge -c bioconda snakemake`. If you are working in Windows, some of the dependencies in the full version of snakemake will not work for you. You can install the minimal version of snakemake:`mamba install -c conda-forge bioconda::snakemake-minimal`
 
