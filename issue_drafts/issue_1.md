@@ -53,13 +53,14 @@ A rule specifies:
 The rule that we will create in this issue will download the temperature predictions from ScienceBase that we will process and visualize in later steps.
 As mentioned earlier, the Python code for this step is already written.
 You can find it in the script `sb_get.py`.
-Try running that script now. I'll wait!
-```
-python 1_fetch/sb_get.py
-```
-Be sure that you're in the correct Conda environment - if not, activate the right environment first:
+Let's test out the Python code before we start to build our pipeline. Navigate to your local clone of this repository in either Anaconda Navigator or the command line. Be sure that you're in the Conda environment we created for this tutorial - if not, activate the right environment first:
 ```
 conda activate snakemake-tutorial
+```
+
+Now, try running the script. I'll wait!
+```
+python 1_fetch/sb_get.py
 ```
 
 The script should download a single zip file to `1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip`.
