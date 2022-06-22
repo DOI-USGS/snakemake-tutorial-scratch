@@ -85,11 +85,11 @@ rule unzip_sb_data:
 ```
 Specifying multiple outputs is as simple as listing many strings separated by commas.
 You can specify multiple inputs or parameters in exactly the same way.
-
-Notice that the path to each output file is included.
-Snakemake requires all paths to files to be specified relative to the Snakefile.
-
 Add the code above to the Snakefile.
+
+> NOTE: The path to each output file is included.
+> Snakemake requires all paths to files to be specified relative to the Snakefile.
+
 
 ## Completing the rule
 
