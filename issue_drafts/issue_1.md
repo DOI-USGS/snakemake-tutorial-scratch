@@ -91,7 +91,7 @@ Let's add this to our rule:
 ```
 rule get_sb_data:
     output:
-        1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip
+        "1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
 ```
 
 Finally, we need to tell Snakemake how to create this zip file - what code to run.
@@ -102,9 +102,9 @@ So, let's specify that Python file as our script.
 ```
 rule get_sb_data:
     output:
-        1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip
+        "1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
     script:
-        1_fetch/sb_get.py
+        "1_fetch/sb_get.py"
 ```
 Like with any Python file, be sure to pay attention to indentation!
 Since the script is a `.py`, Snakemake knows to use `python` to run it.
