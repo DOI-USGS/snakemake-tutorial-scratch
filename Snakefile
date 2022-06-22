@@ -13,9 +13,9 @@ rule get_sb_data:
     script:
         "1_fetch/sb_get.py"
 
-rule unzip_files:
+rule unzip_sb_data:
     input:
-        sb_file = "1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
+        zip_file_path = "1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
     params:
         out_dir = "1_fetch/out/"
     output:
