@@ -139,7 +139,7 @@ Let's make sure that the pipeline runs from beginning to end correctly.
 We'll delete all output files and then create them again.
 Try this command:
 ```
-snakemake unzip_sb_data --delete-all-output
+snakemake --cores 1 unzip_sb_data --delete-all-output
 ```
 All the unzipped files and the downloaded archive should be gone.
 Now execute the `unzip_sb_data` rule again.
