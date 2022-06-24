@@ -13,7 +13,7 @@ rule get_sb_data:
         "1_fetch/sb_get.py"
 ```
 
-There were no file inputs to this step (if there were, we would have defined them as a Snakefile 'input'). However, if you look at the `1_fetch/sb_get.py` script, you will notice that there are two pieces of information that could be considered 'inputs' to this pipeline step - the ScienceBase item that we are fetching data from, and the name of the file we want to download. These 'inputs' have been hardcoded into the script as variables:
+There were no file inputs to this step (if there were, we would have defined them as a Snakefile `input`). However, if you look at the `1_fetch/sb_get.py` script, you will notice that there are two pieces of information that could be considered "inputs" to this pipeline step - the ScienceBase item that we are fetching data from, and the name of the file we want to download. These pieces of information have been hardcoded into the script as variables:
 ```
 if __name__ == "__main__":
     sb_item = "5e5d0bb9e4b01d50924f2b36"
