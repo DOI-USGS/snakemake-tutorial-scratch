@@ -8,9 +8,9 @@ In the last issue, we wrote a Snakefile rule to fetch a zipped folder containing
 ```
 rule get_sb_data:
     output:
-        1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip
+        "1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
     script:
-        1_fetch/sb_get.py
+        "1_fetch/sb_get.py"
 ```
 
 There were no file inputs to this step (if there were, we would have defined them as a Snakefile 'input'). However, if you look at the `1_fetch/sb_get.py` script, you will notice that there are two pieces of information that could be considered 'inputs' to this pipeline step - the ScienceBase item that we are fetching data from, and the name of the file we want to download. These 'inputs' have been hardcoded into the script as variables:
