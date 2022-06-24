@@ -22,9 +22,9 @@ if __name__ == "__main__":
 "
 ```
 
-It can be helpful to specify input variables for your pipeline step in the Snakefile. Specifying these varaiables in the Snakefile allows you to get a more comprehensive view of the inputs and outputs for your pipeline step. It also allows you to more easily update your pipeline if, for example, you were to switch to a different (but identically structured) set input data from ScienceBase.
+It can be helpful to specify these variables in the Snakefile instead. That way, you get a more comprehensive view of the inputs and outputs for your pipeline step. It also allows you to more easily update your pipeline if, for example, you were to switch to a different (but identically structured) data source from ScienceBase.
 
-Let's define these variables in the Snakefile now. The snakemake Python module (which we will use to read our variables into the script) has access to the information stored as inputs, outputs, or params in the Snakefile. We have already defined the string stored in the `sb_file` variable in the output of our current rule. Let's give this string a name so that we can reference it by name in our script:
+Let's define these variables in the Snakefile now. In just a bit, we'll see the properties of a Snakefile's rule - `input`, `params`, `output`, etc. - can be accessed from within the Python script called by that rule. We have already defined the string stored in the `sb_file` variable in the output of our current rule. Let's give this string a name so that we can reference it by name in our script:
 ```
 rule get_sb_data:
     output:
@@ -33,7 +33,7 @@ rule get_sb_data:
         "1_fetch/sb_get.py"
 ```
 
-We have not defined the string stored in the `sb_item` variable of our Python script anywhere in our Snakefile yet. Since it is not an input or output file for the script called in this step, we will define this variable as a parameter for this rule:
+We have not defined the string stored in the `sb_item` variable of our Python script anywhere in our Snakefile yet. Since it is not an input or output file for the script called in this step, we will define this variable as a parameter for this rule by using the `params` directive:
 ```
 rule get_sb_data:
     params:
@@ -45,7 +45,7 @@ rule get_sb_data:
 ```
 
 ## Reading Named Variables from a Snakefile into a Python Script
-Now that we have defined all the input variables for the `main()` function of our `1_fetch/sb_get.py` script in our Snakefile, let's replace the hardcoded strings in our script. We can pull in variables defined in a Snakefile rule using the snakemake Python module. We call the variables by type (input, output, params), and since we have given them names, we can reference them by name:
+Now that we have defined all the arguments for the `main()` function of our `1_fetch/sb_get.py` script in our Snakefile, let's replace the hardcoded strings in our script. We can access variables defined in a Snakefile rule using the `snakemake` Python object. The `snakemake` object is a global object that Snakemake provides in any script that is called via the `script` directive. We call the variables by the property of the rule (input, output, params), and since we have given them names, we can reference them by name:
 ```
 if __name__ == "__main__":
     sb_item = snakemake.params['sb_item']
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     main(sb_item, sb_file)
 ```
 
-Save your Snakefile and Python script with these updates, and go ahead and delete the zip file we downloaded earlier (in `1_fetch/out/`). Execute the rule again now that it uses the snakemake Python module, and see if the file downloads correctly for you again:
+Save your Snakefile and Python script with these updates, and go ahead and delete the zip file we downloaded earlier (in `1_fetch/out/`). Execute the rule again now that its script uses the `snakemake` object, and see if the file downloads correctly for you again:
 ```
 snakemake --cores 1 1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip
 ```
