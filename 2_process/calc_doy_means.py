@@ -24,5 +24,7 @@ def main(out_file, in_file, lake_id):
     calc_doy_means(df, lake_id, f"2_process/out/doy_{lake_id}.csv")
 
 if __name__ == '__main__':
+    out_file = snakemake.output['out_file']
+    in_file = snakemake.input['in_file']
     lake_id = snakemake.wildcards['lake_id']
-    main(snakemake.output['out_file'], snakemake.input['in_file'], lake_id)
+    main(out_file, in_file, lake_id)
