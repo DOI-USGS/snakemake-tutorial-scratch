@@ -8,7 +8,7 @@ In the last issue, we wrote a Snakefile rule to fetch a zipped folder containing
 ```
 rule get_sb_data:
     output:
-        "1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
+        "1_fetch/tmp/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
     script:
         "1_fetch/sb_get.py"
 ```
@@ -17,7 +17,7 @@ There were no file inputs to this step (if there were, we would have defined the
 ```
 if __name__ == "__main__":
     sb_item = "5e5d0bb9e4b01d50924f2b36"
-    sb_file = "1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
+    sb_file = "1_fetch/tmp/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
     main(sb_item, sb_file)
 "
 ```
@@ -28,7 +28,7 @@ Let's define these variables in the Snakefile now. In just a bit, we'll see the 
 ```
 rule get_sb_data:
     output:
-        sb_file = "1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
+        sb_file = "1_fetch/tmp/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
     script:
         "1_fetch/sb_get.py"
 ```
@@ -39,7 +39,7 @@ rule get_sb_data:
     params:
         sb_item = "5e5d0bb9e4b01d50924f2b36"
     output:
-        sb_file = "1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
+        sb_file = "1_fetch/tmp/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
     script:
         "1_fetch/sb_get.py"
 ```
@@ -53,11 +53,11 @@ if __name__ == "__main__":
     main(sb_item, sb_file)
 ```
 
-Save your Snakefile and Python script with these updates, and go ahead and delete the zip file we downloaded earlier (in `1_fetch/out/`). Execute the rule again now that its script uses the `snakemake` object, and see if the file downloads correctly for you again:
+Save your Snakefile and Python script with these updates, and go ahead and delete the zip file we downloaded earlier (in `1_fetch/tmp/`). Execute the rule again now that its script uses the `snakemake` object, and see if the file downloads correctly for you again:
 ```
-snakemake --cores 1 1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip
+snakemake --cores 1 1_fetch/tmp/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip
 ```
 
-Hopefully the snakemake pipeline executed without any errors and you were able to re-download the output file for our current pipeline: `1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip`. If you had any trouble, look back over your work, and contact your instructor if you can't find the problem on your own.
+Hopefully the snakemake pipeline executed without any errors and you were able to re-download the output file for our current pipeline: `1_fetch/tmp/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip`. If you had any trouble, look back over your work, and contact your instructor if you can't find the problem on your own.
 
 In the next issue, we'll learn some best practices for unzipping files using snakemake.
