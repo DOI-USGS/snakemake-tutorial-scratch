@@ -58,9 +58,9 @@ if __name__ == '__main__':
 Try running this step again with `snakemake --cores 1 calc_doy_means` and make sure it works for you. If it does, delete the outputs before we move on with `snakemake --cores 1 calc_doy_means --delete-all-output`.
 
 ## Generalize your rule with wildcards
-Snakemake allows us to generalize rules by using "wildcards".
+As you might imagine, if we wanted to process files a large number of lakes IDs, listing every input and every output could become very tedious and result in a very long Snakefile. Because the input filepaths are identical aside from just one varying substring (the lake ID), we can simplify our Snakefile down to just one line to represent all the input files. The same is true for the output files. This generalization will be done using "wildcards".
 
-Instead of listing an explicit filepath for the input and output file associated with each lake ID that we want to process, we can write just one input and one output with a wildcard in place of the varying `lake_id`. Wildcards are indicated by using `{}` around the wildcard name (`lake_id` in this case). Here's our updated rule that uses wildcards:
+Wildcards are indicated by using `{}` around the wildcard name (`lake_id` in this case). Here's our updated rule that uses wildcards:
 ```
 rule calc_doy_means:
     input:
