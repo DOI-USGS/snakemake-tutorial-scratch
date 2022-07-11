@@ -33,7 +33,7 @@ Note: If you do test out the rule, be sure to delete the outputs before moving f
 
 Next, let's replace the hardcoded file names and lake IDs in the `2_process/calc_doy_means.py` script with our snakemake rule properties.
 
-We have multiple files as inputs and multiple files as outputs. We can treat our inputs and outputs as lists when we call them in Python.
+In our Snakefile, we have multiple files as inputs (and multiple files as outputs too), none of which are given variable names in the Snakefile. When we call `snakemake.input` in our Python script, a list of the inputs from the Snakefile will be returned. The same is true for our list of outputs when we call `snakemake.output`.
 
 To begin, we will be removing the hardcoded list of `lake_ids` in our script; however, we still need to indicate how many iterations our for loop needs to go through. We can choose the number of iterations by using the length of our input file list: `for i in range(len(snakemake.input))`.
 
