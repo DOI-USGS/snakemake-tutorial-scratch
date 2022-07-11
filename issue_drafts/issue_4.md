@@ -33,11 +33,11 @@ Note: If you do test out the rule, be sure to delete the outputs before moving f
 
 Next, let's replace the hardcoded file names and lake IDs in the `2_process/calc_doy_means.py` script with our Snakemake rule properties.
 
-In our Snakefile, we have multiple files as inputs (and multiple files as outputs too), none of which are given variable names in the Snakefile. When we call `snakemake.input` in our Python script, a list of the inputs from the Snakefile will be returned (`[ "1_fetch/out/tmp/pgdl_nhdhr_120020150_temperatures.csv", "1_fetch/out/tmp/pgdl_nhdhr_107072210_temperatures.csv"]`. The same is true for our list of outputs when we call `snakemake.output`.
+In our Snakefile, we have multiple files as inputs (and multiple files as outputs too), none of which are given variable names in the Snakefile. When we call `snakemake.input` in our Python script, a list of the inputs from the Snakefile will be returned (`["1_fetch/out/tmp/pgdl_nhdhr_120020150_temperatures.csv", "1_fetch/out/tmp/pgdl_nhdhr_107072210_temperatures.csv"]`). Likewise, a list of output file names will be returned when we call `snakemake.output`.
 
-To begin, we will be removing the hardcoded list of `lake_ids` in our script; however, we still need to indicate how many iterations our for loop needs to go through. We can choose the number of iterations by using the length of our input file list: `for i in range(len(snakemake.input))`.
+Since the Snakemake rule inputs and outputs already have the lake IDs included, we can remove the list of `lake_ids` from our script. However, since we were using the lake IDs to indicate how many iterations our for loop needs to go through, we will now need to change that. We can choose the number of iterations by using the length of our input file list: `for i in range(len(snakemake.input))`. We can call each input and output file name from the list by index as we go through our for loop.
 
-Let's read in the `in_file` and `out_file` names for each for loop iteration. We can use the snakemake inputs and outputs property lists, and call the file name by index:
+Let's put that all together:
 ```
 if __name__ == '__main__':
     for i in range(len(snakemake.input))
