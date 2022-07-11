@@ -24,7 +24,9 @@ rule calc_doy_means:
         "2_process/calc_doy_means.py"
 ```
 
-This rule is perfectly acceptable and should work if you test it out by running `snakemake --cores 1 calc_doy_means` in your command line/Anaconda prompt. If you test out the rule, be sure to delete the outputs before moving forward (`snakemake --cores 1 calc_doy_means --delete-all-output`). If you don't delete the outputs, the Snakemake pipeline will not execute next time because the outputs have already been generated.
+This rule is perfectly acceptable and should work if you test it out by running `snakemake --cores 1 calc_doy_means` in your command line/Anaconda prompt.
+
+Note: If you do test out the rule, be sure to delete the outputs before moving forward (`snakemake --cores 1 calc_doy_means --delete-all-output`). If you don't delete the outputs, the Snakemake pipeline will not execute next time because the outputs have already been generated!
 
 Next, let's replace the hardcoded file names and lake IDs in the `2_process/calc_doy_means.py` script with our snakemake rule properties.
 
