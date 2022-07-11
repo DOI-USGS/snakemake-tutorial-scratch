@@ -2,7 +2,10 @@
 
 Pipeline steps: Compute the mean predicted temperature on each day of the year (at all depths) for each lake of interest
 
-Concepts learned: wildcards, rule all, dry-run
+Concepts learned:
+- wildcards
+- rule all
+- dry-run
 
 ## Update `calc_doy_means.py` script to use properties from Snakemake rule
 Our current workflow is able to fetch and unzip raw lake temperature prediction data from ScienceBase. In the `out` file of our `1_fetch` step, we have a folder called `tmp` containing a set of csv files, each of which contains daily temperature predictions for a single lake (at multiple depths).
