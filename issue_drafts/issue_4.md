@@ -71,7 +71,7 @@ rule calc_doy_means:
         "2_process/calc_doy_means.py"
 ```
 
-## Resolve wildcards with `rule all`
+## Resolve wildcards and introduction of `rule all`
 We've set up our Snakefile with some wildcards, but we've lost the information about which `lake_ids` specifically we want to process. We would typically resolve our wildcards in the next pipeline rule as inputs, like this:
 ```
 rule whatever_we_want_to_do_next:
