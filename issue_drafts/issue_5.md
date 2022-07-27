@@ -7,6 +7,7 @@ Pipeline steps:
 - Add in third lake
 
 Concepts learned:
+- The split-apply-combine strategy
 - Rebuilding parts of the pipeline
 
 ## The split-apply-combine strategy
@@ -16,7 +17,7 @@ In Snakemake pipelines, this strategy makes it easy to execute the analysis step
 That parallelization can save hours or days if the analyses are computationally costly.
 
 Let's consider our pipeline thus far in the context of the split-apply-combine strategy.
-We have three rules so fart that accomplish the following three tasks:
+We have three rules so far that accomplish the following three tasks:
 
 1. Download a dataset as a zip file (all lakes)
 2. Unzip the file (obtain lake-specific files)
@@ -44,7 +45,7 @@ rule combine_site_files:
         "2_process/out/doy_120020150.csv",
         "2_process/out/doy_107072210.csv"
 ```
-The wildcard in rule `calc_doy_means` will be resolved in exactly the same way that they are when rule `all` requests these files as inputs.
+The wildcard in rule `calc_doy_means` will be resolved in the same way that they are when rule `all` requests these files as inputs.
 
 There is only one output file for this step: a single .csv file with all the averaged temperatures for every lake.
 In `2_process/combine_site_files.py` you can see that the file is saved to `2_process/out/combined_doy.csv`.
@@ -79,7 +80,7 @@ The input file is the output of the previous step: `2_process/out/combined_doy.c
 The output file is the plot we'll make as a `.png` file: `3_plot/out/doy_plot.png`.
 The Python script we'll adapt to use for this step is `3_plot/plot_doy_mean.py`.
 
-If you read the Python script you'll see that there's one other hardcoded bit of information: the lake depths at which to plot temperatures.
+If you read the Python script, you'll see that there's one other hardcoded bit of information: the lake depths at which to plot temperatures.
 Let's include that in our rule as well using the `params` directive.
 
 Try creating this rule yourself.
@@ -100,7 +101,7 @@ snakemake --cores 1 3_plot/out/doy_plot.png --delete-all-output
 ```
 Next, we'll try a dry run without specifying any output files.
 First, what do you expect to see?
-Now carry out the dry run, and see if the output matches your expectations.
+Now carry out the dry run and see if the output matches your expectations.
 If it all looks good, then execute the actual run.
 ```
 snakemake --cores 1
@@ -123,7 +124,7 @@ snakemake -c1 3_plot/out/doy_plot.png
 Now let's see what happens when we add another lake to the plot.
 From among all the site IDs of the csvs that are outputs of `unzip_sb_data`, choose one site and add it to the inputs of `combine_site_files`.
 For instance, you could add "2_process/out/doy_86444267.csv" as a third output of `combine_site_files`.
-Now try a dry run to see what would happen if we build the pipeline again.
+Now try a dry run to see what happens when we build the pipeline again.
 ```
 snakemake -n
 ```
@@ -136,9 +137,9 @@ You'll probably see the following message:
 >     To trigger a re-run, use 'snakemake -R $(snakemake --list-input-changes)'.
 > Nothing to be done (all requested files are present and up to date).
 
-We know that Snakemake won't rebuild any pipeline targets because it says "Nothing to be done".
+We know that Snakemake won't rebuild any pipeline targets because it prints the message, "Nothing to be done".
 This is important to notice - when the Snakefile is changed, Snakemake doesn't rebuild everything affected by that change by default.
-However, Snakemake did detect the change to inputs that we made, and offers a way to re-run the pipeline with the changes.
+However, Snakemake did detect the change to inputs that we made and offers a way to re-run the pipeline with the changes.
 First, let's inspect which output files have changes, as it suggests.
 ```
 snakemake --list-input-changes
@@ -152,9 +153,9 @@ snakemake -n -R $(snakemake --list-input-changes)
 ```
 > NOTE: The `-R` flag is short for --forcerun. The flag forces a file to be re-created, even if Snakemake would otherwise not remake it. All dependent (downstream) files are also re-created, but the files that the target depends on (upstream) are not remade.
 
-You can see that, if we execute this command without the `-n` flag, we'll create the averaged temperatures for the new lake in the file `2_process/out/doy_86444267.csv`, and re-create `2_process/out/combined_doy.csv` and `3_plot/out/doy_plot.png`.
+You can see that, if we execute this command without the `-n` flag, we'll create the averaged temperatures for the new lake in the file `2_process/out/doy_86444267.csv` and re-create `2_process/out/combined_doy.csv` and `3_plot/out/doy_plot.png`.
 This entails re-running four rules: `calc_doy_means`, `combine_site_files`, `plot_doy_mean`, and `all` (rule `all` doesn't actually create any files).
-Notice that only the new lake's averaged file gets created; `doy_120020150.csv` and `doy_107072210.csv` remain untouched because adding a new lake has no affect on those target files.
+Notice that only the new lake's averaged file gets created; `doy_120020150.csv` and `doy_107072210.csv` remain untouched because adding a new lake has no effect on those target files.
 However, `2_process/out/combined_doy.csv` concatenates averaged temperatures for all specified lakes, so it gets re-created along with `3_plot/out/doy_plot.png`, which depends on it.
 
 Let's try re-running the pipeline using the command Snakemake suggested.
@@ -167,5 +168,5 @@ There's our newly added lake, plotted with the others!
 
 You can similarly change the depths shown in the plots by changing the value of `depths` in the params of the `plot_doy_mean` rule.
 Try that out and see if Snakemake rebuilds the file by default after your change to the params, or if it only warns you of a change.
-Feel free to continue making changes and exploring under what conditions does Snakemake recreates files, or provides warning messages.
+Feel free to continue making changes and exploring under what conditions does Snakemake recreates files or provides warning messages.
 
