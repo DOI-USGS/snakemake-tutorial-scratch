@@ -7,8 +7,6 @@ Pipeline steps:
 - Add in third lake
 
 Concepts learned:
-- Calling a rule that uses wildcards
-- Calling such a rule for multiple wildcard values
 - Rebuilding parts of the pipeline
 
 ## The split-apply-combine strategy
@@ -156,7 +154,7 @@ snakemake -n -R $(snakemake --list-input-changes)
 
 You can see that, if we execute this command without the `-n` flag, we'll create the averaged temperatures for the new lake in the file `2_process/out/doy_86444267.csv`, and re-create `2_process/out/combined_doy.csv` and `3_plot/out/doy_plot.png`.
 This entails re-running four rules: `calc_doy_means`, `combine_site_files`, `plot_doy_mean`, and `all` (rule `all` doesn't actually create any files).
-Notice that only the new lake's averaged file gets created; `doy_120020150.csv` and `doy_107072210` remain untouched because adding a new lake has no affect on those target files.
+Notice that only the new lake's averaged file gets created; `doy_120020150.csv` and `doy_107072210.csv` remain untouched because adding a new lake has no affect on those target files.
 However, `2_process/out/combined_doy.csv` concatenates averaged temperatures for all specified lakes, so it gets re-created along with `3_plot/out/doy_plot.png`, which depends on it.
 
 Let's try re-running the pipeline using the command Snakemake suggested.
