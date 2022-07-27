@@ -58,30 +58,30 @@ rule unzip_sb_data:
     input:
         zip_file_path = "1_fetch/tmp/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
     output:
-        "1_fetch/out/pgdl/pgdl_nhdhr_{FC091A8F-FC45-46C0-91F9-18379CF0EAAE}_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_69545713_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_80006805_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_86444267_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_86445115_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_105954753_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_107071276_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_107071492_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_107072210_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_111726865_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_120018402_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_120018788_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_120018790_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_120020150_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_120020163_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_120020166_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_120020167_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_120020444_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_120020465_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_120020466_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_120020478_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_120020480_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_120020497_temperatures.csv",
-        "1_fetch/out/pgdl/pgdl_nhdhr_120020979_temperatures.csv"
+        "1_fetch/out/tmp/pgdl_nhdhr_{FC091A8F-FC45-46C0-91F9-18379CF0EAAE}_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_69545713_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_80006805_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_86444267_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_86445115_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_105954753_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_107071276_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_107071492_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_107072210_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_111726865_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_120018402_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_120018788_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_120018790_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_120020150_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_120020163_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_120020166_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_120020167_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_120020444_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_120020465_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_120020466_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_120020478_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_120020480_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_120020497_temperatures.csv",
+        "1_fetch/out/tmp/pgdl_nhdhr_120020979_temperatures.csv"
 ```
 Specifying multiple outputs is as simple as listing many strings separated by commas.
 You can specify multiple inputs or parameters in exactly the same way.
@@ -121,7 +121,7 @@ Once you've got everything ready, you can test your new rule by executing it.
 There are two ways to do this.
 One way is to call snakemake using the name of any of the unzipped files, like this:
 ```
-snakemake --cores 1 1_fetch/out/pgdl/pgdl_nhdhr_120020979_temperatures.csv
+snakemake --cores 1 1_fetch/out/tmp/pgdl_nhdhr_120020979_temperatures.csv
 ```
 Snakemake will look for and execute the rule with this file as an output - the `unzip_sb_data` rule.
 When that rule is executed, all of that rule's outputs will be created, not just the one you specified.
@@ -131,7 +131,7 @@ The other way to execute the rule is to call it by name in the snakemake command
 snakemake --cores 1 unzip_sb_data
 ```
 Use either method to test the rule.
-Hopefully you'll find all the unzipped files in the directory `1_fetch/out/pgdl/`.
+Hopefully you'll find all the unzipped files in the directory `1_fetch/out/tmp/`.
 If snakemake shows an error message, read it closely and see if you can fix the error.
 If you get stuck, ask your instructor for help.
 
