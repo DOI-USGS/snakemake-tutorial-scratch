@@ -1,11 +1,11 @@
 name: snakemake-tutorial
-channels: 
+channels:
   - conda-forge
   - bioconda
-dependencies: 
+dependencies:
   - pip
   - snakemake
-  - pandas 
+  - pandas
   - seaborn
   - matplotlib
   - pip:
