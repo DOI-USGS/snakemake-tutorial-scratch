@@ -14,7 +14,7 @@ Our current workflow is able to fetch and unzip raw lake temperature prediction 
 
 The daily dataset spans nearly 40 years, and we would like to process it by calculating the day-of-year mean temperature predictions (at all depths) for each lake. Let's add a new rule to do this.
 
-For this tutorial, we will choose two lakes that we want to calculate the day-of-year mean temperatures for. The lakes that we want to process have the IDs `120020150` and `107072210`.
+For this tutorial, we will calculate the day-of-year mean temperatures for two lakes. Those lakes have the IDs `120020150` and `107072210`.
 
 Let's process the data based on our current knowledge of Snakemake pipelining. We can write a rule that uses the `2_process/calc_doy_means.py` script. We will need to indicate the input and output files for the two lakes we have chosen in our rule as well:
 ```
