@@ -31,7 +31,7 @@ rule calc_doy_means:
 
 This rule is perfectly acceptable and should work if you test it out by running `snakemake --cores 1 calc_doy_means` in your command line/Anaconda prompt.
 
-Note: If you do test out the rule, be sure to delete the outputs before moving forward (`snakemake --cores 1 calc_doy_means --delete-all-output`). If you don't delete the outputs, the Snakemake pipeline will not execute next time because the outputs have already been generated!
+> Note: If you do test out the rule, be sure to delete the outputs before moving forward (`snakemake --cores 1 calc_doy_means --delete-all-output`). If you don't delete the outputs, the Snakemake pipeline will not execute next time because the outputs have already been generated!
 
 Next, let's replace the hardcoded file names and lake IDs in the `2_process/calc_doy_means.py` script with our Snakemake rule properties.
 
@@ -60,7 +60,7 @@ if __name__ == '__main__':
 Try running this step again with `snakemake --cores 1 calc_doy_means` and make sure it works for you. If it does, delete the outputs before we move on with `snakemake --cores 1 calc_doy_means --delete-all-output`.
 
 ## Generalize your rule with wildcards
-As you might imagine, if we wanted to process files a large number of lakes IDs, listing every input and every output could become very tedious and result in a very long Snakefile. Because the input filepaths are identical aside from just one varying substring (the lake ID), we can simplify our Snakefile down to just one line to represent all the input files. The same is true for the output files. This generalization will be done using "wildcards".
+As you might imagine, if we wanted to process data for a large number of lakes, listing every input and every output could become very tedious and result in a very long Snakefile. Because the input filepaths are identical aside from just one varying substring (the lake ID), we can simplify our Snakefile down to just one line to represent all the input files. The same is true for the output files. This generalization will be done using "wildcards".
 
 Wildcards are indicated by using `{}` around the wildcard name (`lake_id` in this case). Here's our updated rule that uses wildcards:
 ```
@@ -86,7 +86,7 @@ This would allow Snakemake to intuit that the `lake_id` wildcard should have val
 
 We aren't ready to build the next step of our pipeline yet, but we can still create another rule to resolve our wildcards. We could create a new rule with any name just like above, and run our pipeline by calling that named rule (in the example above, that would be `snakemake --cores 1 whatever_we_want_to_do_next`).
 
-However, it is generally considered a good Snakemake practice to collect your final outputs in a `rule all`. The naming of this rule does not make any difference, but this is a standard convetion that is recommended by the source documentation.
+However, it is generally considered a good Snakemake practice to collect your final outputs in a `rule all`. The naming of this rule does not make any difference, but this is a standard convention that is recommended by the source documentation.
 
 The `rule all` is typically defined at the top of your Snakefile. The reason for placing it at the top of your Snakefile is that if no target rule is specified in the command line, Snakemake will use the first rule of the Snakefile as the target. This means that we could just run `snakemake --cores 1`, and Snakemake would use the first rule as your target. 
 
@@ -101,7 +101,7 @@ rule all:
 ## Test your Snakefile structure with a dry-run
 Let's check to make sure we have built our wildcards correctly. So far, we've been testing our pipeline by running it and actually generating the outputs as we go. This can be a tedious way to test the pipeline because some steps may be slow to run.
 
-We may want to test out our Snakefile to see if we have resolved all of our wildcards correctly without actually running the pipeline. We can do this by doing a `dry-run`. The `dry-run` command will allow you to see how the wildcard value is propagated to your input and output filenames in your command line. Try it out!
+We may want to test out our Snakefile to see if we have resolved all of our wildcards correctly without actually running the pipeline. We can do this by doing a `dry-run`. The `dry-run` command line argument will allow you to see how the wildcard value is propagated to your input and output filenames in your command line. Try it out!
 ```
 snakemake --dry-run 
 ```
