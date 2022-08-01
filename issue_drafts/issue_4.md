@@ -5,12 +5,14 @@ Pipeline steps: Compute the mean predicted temperature on each day of the year (
 Concepts learned:
 - wildcards
 - rule all
+- `rule all`
 - dry-run
+- the `dry-run` argument
 
 ## Update `calc_doy_means.py` script to use properties from Snakemake rule
 Our current workflow is able to fetch and unzip raw lake temperature prediction data from ScienceBase. In the `out` file of our `1_fetch` step, we have a folder called `tmp` containing a set of csv files, each of which contains daily temperature predictions for a single lake (at multiple depths).
 
-The daily data spans nearly 40 years, and we would like to process it by calculating the day-of-year mean temperature predictions (at all depths) for each lake. Let's add a new rule to do this.
+The daily dataset spans nearly 40 years, and we would like to process it by calculating the day-of-year mean temperature predictions (at all depths) for each lake. Let's add a new rule to do this.
 
 For this tutorial, we will choose two lakes that we want to calculate the day-of-year mean temperatures for. The lakes that we want to process have the IDs `120020150` and `107072210`.
 
