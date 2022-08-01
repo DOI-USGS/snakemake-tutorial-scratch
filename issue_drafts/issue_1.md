@@ -63,7 +63,7 @@ Now, try running the script. I'll wait!
 python 1_fetch/sb_get.py
 ```
 
-The script should download a single zip file to `1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip`.
+The script should download a single zip file to `1_fetch/tmp/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip`.
 If the file wasn't downloaded, let your instructor know and we'll get it sorted out!
 
 If the file is there, great!
@@ -91,7 +91,7 @@ Let's add this to our rule:
 ```
 rule get_sb_data:
     output:
-        "1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
+        "1_fetch/tmp/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
 ```
 
 Finally, we need to tell Snakemake how to create this zip file - what code to run.
@@ -102,7 +102,7 @@ So, let's specify that Python file as our script.
 ```
 rule get_sb_data:
     output:
-        "1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
+        "1_fetch/tmp/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip"
     script:
         "1_fetch/sb_get.py"
 ```
@@ -116,10 +116,10 @@ Let's try it out.
 
 ## Executing the pipeline
 
-First, go ahead and delete the zip file we downloaded earlier - the one that's in `1_fetch/out/`.
+First, go ahead and delete the zip file we downloaded earlier - the one that's in `1_fetch/tmp/`.
 Next, execute our new rule using the following command:
 ```
-snakemake --cores 1 1_fetch/out/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip
+snakemake --cores 1 1_fetch/tmp/pgdl_predictions_04_N45.50-48.00_W92.00-93.00.zip
 ```
 This is the main way to run the pipeline.
 We call the `snakemake` executable, passing in the file or files we want it to create as arguments.
