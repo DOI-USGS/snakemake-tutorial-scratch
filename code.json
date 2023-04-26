@@ -1,0 +1,38 @@
+[
+  {
+    "name": "snakemake-tutorial-scratch",
+    "organization": "U.S. Geological Survey",
+    "description": "snakemake-tutorial-scratch",
+    "version": "main",
+    "status": "Development",
+    "permissions": {
+      "usageType": "openSource",
+      "licenses": [
+        {
+          "name": "Public Domain, CC0-1.0",
+          "URL": "https://github.com/DOI-USGS/snakemake-tutorial-scratch/raw/main/LICENSE.md"
+        }
+      ]
+    },
+    "homepageURL": "https://github.com/DOI-USGS/snakemake-tutorial-scratch/",
+    "downloadURL": "https://github.com/DOI-USGS/snakemake-tutorial-scratch/archive/refs/heads/main.zip",
+    "disclaimerURL": "https://github.com/DOI-USGS/snakemake-tutorial-scratch/raw/main/DISCLAIMER.md",
+    "repositoryURL": "https://github.com/DOI-USGS/snakemake-tutorial-scratch.git",
+    "vcs": "git",
+    "laborHours": 40,
+    "tags": [
+      "R",
+      "USGS"
+    ],
+    "languages": [
+      "R"
+    ],
+    "contact": {
+      "name": "Julie Padilla",
+      "email": "jpadilla@usgs.gov"
+    },
+    "date": {
+      "metadataLastUpdated": "2023-04-23"
+    }
+  }
+]

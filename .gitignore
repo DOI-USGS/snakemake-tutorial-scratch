@@ -10,3 +10,4 @@
 1_fetch/out/*
 2_process/out/*
 3_plot/out/*
+.Rproj.user
